@@ -26,6 +26,10 @@ It is a AI ap created with the help genAI . It helps you as a nutritionist . You
 - **Anthropic**: Claude  API for natural language processing and text generation.
 - **Requests**: Python library for making HTTP requests to APIs.
 
+## Live Demo
+
+[Nutrimate AI](https://nutrimate-ai.streamlit.app/)
+
 
 
 ## Thank you for using NutriMate AI!
