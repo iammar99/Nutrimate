@@ -2,11 +2,12 @@
 
 It is a AI ap created with the help genAI . It helps you as a nutritionist . You just have to tell your weight , your  age , your height and have to select your diet type . I'm using anthropic api 
 
+
 ## Steps To create 
 
 - Create virtual enviornment by (python -m venv env)
 - Activate Virtual Enviornment by (env\Scripts\activate)
-- Install Anthropic by (pip install anthropic)
+- Install groq by (pip install groq)
 - Install Streamlit by (pip install streamlit)
 
 
@@ -22,9 +23,9 @@ It is a AI ap created with the help genAI . It helps you as a nutritionist . You
 
 - **Python**: Main programming language for the backend logic.
 - **Streamlit**: Framework for building the web application.
-- **API Integration**: Uses external APIs for food and nutrition data (e.g., Nutritionix, Open Food Facts, etc.).
-- **Anthropic**: Claude  API for natural language processing and text generation.
-- **Requests**: Python library for making HTTP requests to APIs.
+- **API Integration**: Uses external APIs for food and nutrition data (e.g., Anthropic.).
+- **Groq**: Groq  API for natural language processing and text generation.
+
 
 ## Live Demo
 
