@@ -1,17 +1,18 @@
 import streamlit as st
-import anthropic
+from groq import Groq
 
 # Page configuration
 st.set_page_config(page_title="NutriMate AI", page_icon=":bar_chart:")
 
-api_key = st.secrets["claude_API_key"]
 
 def feet_to_meters(height_in_feet):
     return height_in_feet * 0.3048
 
-client = anthropic.Anthropic(api_key=api_key)
 
-# Function to create diet plan
+client = Groq(
+    api_key = st.secrets["groq_API_key"]
+)
+
 def generate_diet_plan(weight, height, age):
     user_input = f"The user is {age} years old, weighs {weight} kg, and is {height} feet tall. Generate a diet plan suitable for their profile. Format the diet plan as follows:\n\n" \
                  "7:00 AM  Breakfast\n- [meal details]\n\n" \
@@ -22,22 +23,25 @@ def generate_diet_plan(weight, height, age):
                  "9:00 PM  Evening Snack\n- [meal details]"
 
     try:
-        # Create a message using the Anthropic API
-        response = client.messages.create(
-            model="claude-3-5-sonnet-20240620",  # Replace with the appropriate model name
-            max_tokens=500,  # Adjust as needed
-            temperature=0.7,  # Adjust the temperature for creativity
-            system="You are a world-class nutritionist AI. Provide personalized diet plans based on user inputs such as weight, height, and age.",
+        # Create a chat completion using the Groq API
+        chat_completion = client.chat.completions.create(
             messages=[
+                {
+                    "role": "system",
+                    "content": "You are a world-class nutritionist AI. Provide personalized diet plans based on user inputs such as weight, height, and age."
+                },
                 {
                     "role": "user",
                     "content": user_input
                 }
-            ]
+            ],
+            model="llama3-8b-8192",  # Replace with the appropriate model name
+            max_tokens=500,  # Adjust as needed
+            temperature=0.7  # Adjust the temperature for creativity
         )
         
         # Extract and return the generated diet plan text
-        generated_text = response.content[0].text  # Access the text attribute within the first TextBlock
+        generated_text = chat_completion.choices[0].message.content
         return generated_text
 
     except Exception as e:
